@@ -19,6 +19,18 @@ const workoutTrackRoutes = require('./Routes/WorkoutTrack');
 const workoutRoutes = require('./Routes/WorkoutPlans');
 const reportRoutes = require('./Routes/Report');
 
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => console.log('MongoDB connected'))
+  .catch((err) => console.log(err));
+
+// Define routes
+app.get('/', (req, res) => {
+    res.send('Fitness Tracker Backend');
+});
+
+
 
 require('dotenv').config();
 require('./db')
