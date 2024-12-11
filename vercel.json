@@ -16,5 +16,10 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ]
+  ],
+  "functions": {
+    "api/*": {
+      "includeFiles": ["node_modules/sharp/**/*"]
+    }
+  }
 }
