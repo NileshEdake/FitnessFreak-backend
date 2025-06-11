@@ -132,6 +132,7 @@ router.post("/getcalorieintakebylimit", authTokenHandler, async (req, res) => {
     );
   }
 });
+
 router.delete("/deletecalorieintake", authTokenHandler, async (req, res) => {
   const { item, date } = req.body;
   if (!item || !date) {

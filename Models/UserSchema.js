@@ -56,12 +56,7 @@ const userSchema = new mongoose.Schema({
 
     calorieIntake: [
         {
-            // item,
-            // date,
-            // quantity,
-            // quantitytype,
-            // calorieIntake:
-
+            
             item: {
                 type: String,
                 required: true,
@@ -151,7 +146,6 @@ userSchema.pre('save', async function (next) {
     if (user.isModified('password')) {
         user.password = await bcrypt.hash(user.password, 8);
     }
-
     next();
 });
 
