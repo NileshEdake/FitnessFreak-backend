@@ -32,6 +32,12 @@ router.post('/addworkoutentry', authTokenHandler, async (req, res) => {
     await user.save();
     res.json(createResponse(true, 'Workout entry added successfully'));
 });
+router.get('/getworkouts', authTokenHandler, async (req, res) => {
+    const userId = req.userId;
+    const user = await User.findById({ _id: userId });
+    res.json(createResponse(true, 'Workout entries', user.workouts));   
+
+})
 
 router.post('/getworkoutsbydate', authTokenHandler, async (req, res) => {
     const { date } = req.body;
@@ -94,7 +100,17 @@ router.delete('/deleteworkoutentry', authTokenHandler, async (req, res) => {
     res.json(createResponse(true, 'Workout entry deleted successfully'));
 });
 
-
+router.delete('/deleteworkout/:id', checkAuth, async (req, res) => {
+  try {
+    const workout = await Workout.findByIdAndDelete(req.params.id);
+    if (!workout) {
+      return res.status(404).json({ message: "Workout not found" });
+    }
+    res.json({ message: "Workout deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to delete workout" });
+  }
+});
 
 
 // has a bug
