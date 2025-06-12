@@ -100,7 +100,7 @@ router.delete('/deleteworkoutentry', authTokenHandler, async (req, res) => {
     res.json(createResponse(true, 'Workout entry deleted successfully'));
 });
 
-router.delete('/deleteworkout/:id', checkAuth, async (req, res) => {
+router.delete('/deleteworkout/:id', authTokenHandler, async (req, res) => {
   try {
     const workout = await Workout.findByIdAndDelete(req.params.id);
     if (!workout) {
