@@ -33,7 +33,7 @@ mongoose.connect(process.env.MONGO_URL, {
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = ['http://localhost:5173'];
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.includes(origin)) {
